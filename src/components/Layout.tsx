@@ -13,6 +13,7 @@ import {
   MapPin
 } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
+import RecoveroLogo from './RecoveroLogo';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -263,17 +264,18 @@ export default function Layout({ children }: LayoutProps) {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md px-5">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center h-16 md:h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 flex-shrink-0 max-w-[70%] md:max-w-[25%] lg:max-w-[30%]">
-              <img 
-                src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovero-logo.png?raw=true" 
-                alt="RECOVERO Logo" 
-                className="h-8 md:h-10 w-auto object-contain flex-shrink-0 rounded-full"
-                referrerPolicy="no-referrer"
-              />
-              <span className="text-lg lg:text-xl font-black tracking-tighter text-brand-dark whitespace-nowrap">
-                RECOVERO<span className="text-brand-orange">24/7</span>
-              </span>
+            {/* Logo & Trust Badge */}
+            <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+              <RecoveroLogo className="w-[44px] md:w-[56px] h-auto flex-shrink-0" />
+              <div className="flex items-center space-x-2 border-l-2 border-gray-200 pl-3 py-1">
+                <div className="relative flex h-2 w-2 flex-shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
+                </div>
+                <span className="text-[10px] md:text-[11px] font-bold tracking-widest text-brand-dark uppercase mt-[1px] whitespace-nowrap">
+                  Calls Answered 24/7
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -410,12 +412,7 @@ export default function Layout({ children }: LayoutProps) {
             {/* Brand */}
             <div className="text-center md:text-left">
               <div className="mb-4 md:mb-6 flex justify-center md:justify-start items-center space-x-2">
-                <img 
-                  src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovero-logo.png?raw=true" 
-                  alt="RECOVERO Logo" 
-                  className="h-8 md:h-10 w-auto object-contain rounded-full"
-                  referrerPolicy="no-referrer"
-                />
+                <RecoveroLogo className="w-[44px] md:w-[56px] h-auto flex-shrink-0" />
                 <span className="text-xl md:text-2xl font-black tracking-tighter text-brand-dark">
                   RECOVERO<span className="text-brand-orange">24/7</span>
                 </span>
