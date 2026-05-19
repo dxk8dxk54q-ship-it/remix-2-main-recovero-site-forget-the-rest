@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] md:h-[90vh] flex items-center overflow-hidden py-12 md:py-0">
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-12">
         <div className="absolute inset-0 z-0">
           <img
             src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovery-truck.jpg?raw=true"
@@ -34,7 +34,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-100"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-brand-dark via-brand-dark/60 to-transparent"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -44,20 +44,20 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl text-center md:text-left"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-[1.1] mb-6 md:mb-8 uppercase tracking-tighter text-brand-dark">
-              Reliable Vehicle <span className="text-brand-orange">Recovery and</span><br />
-              <span className="text-brand-orange">Transport</span> In Portsmouth & Hampshire
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-[1.1] mb-6 md:mb-8 uppercase tracking-tighter text-white">
+              24/7 <span className="text-brand-orange">VEHICLE RECOVERY</span><br />
+              IN PORTSMOUTH & HAMPSHIRE
             </h1>
-            <p className="text-lg md:text-xl text-brand-dark mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed font-bold">
-              Recovero provides fast and reliable 24/7 vehicle recovery and transport across Hampshire, including Portsmouth, Havant, Southampton, Winchester, Fareham, Gosport, and Chichester.
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed font-bold">
+              Recovero arranges 24/7 vehicle recovery, breakdown recovery and transport across Portsmouth, Havant, Fareham, Gosport, Chichester and surrounding Hampshire areas.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 mb-8">
-              <a href="tel:07366302341" className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 md:py-5 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 flex items-center justify-center group rounded-full">
+              <a href="tel:07366302341" className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 md:py-5 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 flex items-center justify-center group rounded-full shadow-2xl">
                 <Phone className="mr-2 w-5 h-5 fill-current" />
                 GET IN TOUCH
               </a>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-6 text-xs md:text-sm font-bold text-brand-dark uppercase tracking-widest">
+            <div className="flex flex-wrap justify-center items-center md:justify-start gap-4 md:gap-8 mt-6 text-xs md:text-sm font-bold text-gray-200 uppercase tracking-widest">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-green-500" />
                 <span>Vetted Operators</span>

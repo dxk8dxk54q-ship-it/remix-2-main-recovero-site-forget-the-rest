@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -25,7 +25,16 @@ export default function Layout({ children }: LayoutProps) {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isCookiesOpen, setIsCookiesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-brand-dark font-brand selection:bg-brand-orange selection:text-white">
@@ -261,18 +270,24 @@ export default function Layout({ children }: LayoutProps) {
       </AnimatePresence>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md px-5">
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-5 ${
+          isScrolled || isMenuOpen
+            ? 'bg-brand-dark/95 backdrop-blur-md shadow-md border-b border-brand-orange/20' 
+            : 'bg-gradient-to-b from-brand-dark/80 to-transparent'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center h-16 md:h-20">
+          <div className="flex justify-between items-center h-16 md:h-16">
             {/* Logo & Trust Badge */}
             <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
               <RecoveroLogo className="w-[44px] md:w-[56px] h-auto flex-shrink-0" />
-              <div className="flex items-center space-x-2 border-l-2 border-gray-200 pl-3 py-1">
+              <div className="flex items-center space-x-2 border-l-2 border-white/20 pl-3 py-1">
                 <div className="relative flex h-2 w-2 flex-shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
                 </div>
-                <span className="text-[10px] md:text-[11px] font-bold tracking-widest text-brand-dark uppercase mt-[1px] whitespace-nowrap">
+                <span className="text-[10px] md:text-[11px] font-bold tracking-widest text-white uppercase mt-[1px] whitespace-nowrap">
                   Calls Answered 24/7
                 </span>
               </div>
@@ -290,7 +305,7 @@ export default function Layout({ children }: LayoutProps) {
                   >
                     <Link
                       to={link.href}
-                      className="flex items-center text-[14px] font-bold uppercase tracking-widest hover:text-brand-orange transition-colors py-4"
+                      className="flex items-center text-[14px] font-bold uppercase tracking-widest text-white hover:text-brand-orange transition-colors py-4"
                     >
                       {link.name}
                       {link.subLinks && <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
@@ -309,7 +324,7 @@ export default function Layout({ children }: LayoutProps) {
                               <Link
                                 key={sub.name}
                                 to={sub.href}
-                                className="block px-4 py-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-orange hover:text-black transition-colors"
+                                className="block px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-dark hover:bg-brand-orange hover:text-black transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 {sub.name}
@@ -324,13 +339,31 @@ export default function Layout({ children }: LayoutProps) {
               </div>
             </nav>
 
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden flex items-center space-x-4">
+            <div className="hidden md:flex items-center justify-end space-x-4">
+              <a 
+                href="tel:07366302341" 
+                className="bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-2 px-5 rounded-full text-[13px] uppercase tracking-widest transition-all transform hover:scale-105 shadow-md flex items-center"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                Call Now
+              </a>
+            </div>
+
+            {/* Mobile Menu Toggle & Call Button */}
+            <div className="md:hidden flex items-center space-x-3">
+              <a 
+                href="tel:07366302341" 
+                className="bg-brand-orange hover:bg-brand-orange/90 text-black font-black p-2 rounded-full transition-all flex items-center justify-center"
+                aria-label="Call Now"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-brand-dark p-2"
+                className="text-white p-2 hover:text-brand-orange transition-colors"
+                aria-label="Toggle Menu"
               >
-                {isMenuOpen ? <X /> : <Menu />}
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -401,7 +434,7 @@ export default function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </header>
 
-      <main className="pt-16 md:pt-20">
+      <main className="w-full">
         {children}
       </main>
 
